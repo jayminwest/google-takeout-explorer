@@ -54,6 +54,7 @@ Google Takeout Explorer API is a FastAPI-based service that helps you process an
 
 4. Run the application:
    ```
+   cd api
    uvicorn app.main:app --reload
    ```
 
@@ -63,7 +64,7 @@ Google Takeout Explorer API is a FastAPI-based service that helps you process an
 ## Usage
 
 1. Download your Google data from [Google Takeout](https://takeout.google.com/)
-2. Place your Google Takeout ZIP files in the `data/` directory
+2. Place your Google Takeout ZIP files in the `api/data/` directory
 3. The API will automatically process these files and convert them to usable formats
 4. Access the processed data and analysis through the API endpoints
 
