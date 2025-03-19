@@ -1,17 +1,18 @@
-# Google Takeout Explorer
+# Google Takeout Explorer API
 
-A privacy-focused application for analyzing and visualizing your Google Takeout data.
+A privacy-focused API for analyzing and processing your Google Takeout data.
 
 ## Overview
 
-Google Takeout Explorer is a Flask-based web application that helps you gain insights from your Google data exports. The application processes your Google Takeout ZIP files locally, ensuring your data never leaves your machine.
+Google Takeout Explorer API is a FastAPI-based service that helps you process and gain insights from your Google data exports. The API processes your Google Takeout ZIP files locally, ensuring your data never leaves your machine.
 
 ## Features
 
 - **Privacy-First**: All data processing happens locally on your machine
-- **Multiple Data Sources**: Analyze Gmail, Location History, and YouTube data
-- **Interactive Visualizations**: Explore your data through Plotly visualizations
-- **Natural Language Queries**: Ask questions about your data in plain English
+- **Multiple Data Sources**: Process Gmail, Location History, YouTube and other Google Takeout data
+- **Data Conversion**: Convert Google Takeout data into more usable file formats
+- **Data Analysis Pipeline**: Extract insights and patterns from your data
+- **RESTful API**: Access your processed data through a well-documented API
 - **Secure Processing**: Your data is never sent to external servers
 
 ## Installation
@@ -29,7 +30,8 @@ Google Takeout Explorer is a Flask-based web application that helps you gain ins
    docker-compose up
    ```
 
-3. Open your browser and navigate to http://localhost:5000
+3. The API will be available at http://localhost:8000
+4. API documentation will be available at http://localhost:8000/docs
 
 ### Manual Installation
 
@@ -47,36 +49,43 @@ Google Takeout Explorer is a Flask-based web application that helps you gain ins
 
 3. Install dependencies:
    ```
-   pip install -r app/requirements.txt
+   pip install -r requirements.txt
    ```
 
 4. Run the application:
    ```
-   python app/app.py
+   uvicorn app.main:app --reload
    ```
 
-5. Open your browser and navigate to http://localhost:5000
+5. The API will be available at http://localhost:8000
+6. API documentation will be available at http://localhost:8000/docs
 
 ## Usage
 
 1. Download your Google data from [Google Takeout](https://takeout.google.com/)
-2. Select the data you want to analyze (Gmail, Location History, YouTube)
-3. Upload the ZIP file to Google Takeout Explorer
-4. Explore your data through the interactive visualizations
-5. Ask questions about your data using the natural language query interface
+2. Place your Google Takeout ZIP files in the `data/` directory
+3. The API will automatically process these files and convert them to usable formats
+4. Access the processed data and analysis through the API endpoints
 
 ## Technical Architecture
 
 The application consists of several components:
 
-- **Flask Web Application**: Handles user interface and file uploads
-- **Data Parsers**: Extract and structure data from Google Takeout files
-- **Data Analyzers**: Generate insights and visualizations from parsed data
-- **Query Interpreter**: Processes natural language queries about your data
+- **FastAPI Backend**: Provides RESTful API endpoints for data access
+- **Data Processors**: Extract and convert data from Google Takeout files
+- **Data Analysis Pipeline**: Processes and analyzes the converted data
+- **Storage Layer**: Manages processed data in optimized formats
+
+## API Endpoints
+
+- `/api/v1/data/sources`: List all available data sources
+- `/api/v1/data/{source}/summary`: Get summary statistics for a specific data source
+- `/api/v1/data/{source}/records`: Get detailed records from a specific data source
+- `/api/v1/analysis/{analysis_type}`: Run specific analysis on your data
 
 ## Privacy Considerations
 
-Google Takeout Explorer is designed with privacy in mind:
+Google Takeout Explorer API is designed with privacy in mind:
 
 - All data processing happens locally on your machine
 - No data is sent to external servers
@@ -85,9 +94,17 @@ Google Takeout Explorer is designed with privacy in mind:
 
 ## Troubleshooting
 
-- **File Upload Issues**: Ensure your ZIP file is a valid Google Takeout export
-- **Processing Errors**: Check the application logs for detailed error messages
-- **Visualization Problems**: Make sure your browser supports JavaScript and WebGL
+- **File Processing Issues**: Ensure your ZIP files are valid Google Takeout exports
+- **API Errors**: Check the application logs for detailed error messages
+- **Performance Issues**: Consider increasing Docker resource limits for large datasets
+
+## Future Development
+
+This API is the first step toward a full-stack application. Future versions will include:
+- A web-based frontend for visualizing the data
+- Interactive dashboards for exploring insights
+- Natural language query capabilities
+- Additional data sources and analysis methods
 
 ## License
 
